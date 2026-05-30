@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santali Image to Text (OCR)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Santali Image to Text</h1>
+        <p>Extract Ol Chiki text from images using Artificial Intelligence. This runs locally in your browser to keep your files private.</p>
+        
+        <div class="upload-area">
+            <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+            <label for="imageUpload">Click or drag image to upload</label>
+            <p>Supports PNG, JPG, JPEG</p>
+        </div>
+
+        <button id="extractButton">Extract Text</button>
+
+        <div class="extracted-text">
+            <h3>Extracted Text</h3>
+            <p id="result">Extracted text will appear here...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
