@@ -34,11 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     resultText.textContent = "Initializing engine...";
 
     try {
-      const result = await Tesseract.recognize(selectedFile, "sat", {
+      // Using the official tesseract langPath mirror to prevent 404 errors
+      const worker = await Tesseract.createWorker("sat", 1, {
+        workerPath:
+          "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js",
+        langPath: "https://cdn.jsdelivr.net/npm/@tesseract.js-data/sat@5.0.0/",
         logger: (m) => {
-          // This logs everything happening behind the scenes to your browser console
           console.log(m);
-
           if (
             m.status === "loading sat ocr engine" ||
             m.status === "loading language traineddata"
@@ -49,6 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         },
       });
+
+      const result = await worker.recognize(selectedFile);
+
+      // Clean up worker memory
+      await worker.terminate();
 
       if (result.data.text.trim() === "") {
         resultText.textContent =
